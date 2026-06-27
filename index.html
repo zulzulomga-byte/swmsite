@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STAY WITH ME COFFE — Japanese Industrial Concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* bone whites */
+    --bone:#F4F1E8;
+    --bone-2:#ECE7D9;
+    --bone-3:#E2DCC8;
+    --paper-line:rgba(14,20,34,0.10);
+    --paper-line-strong:rgba(14,20,34,0.22);
+    /* ink / text */
+    --ink:#10131C;
+    --ink-dim:#454A5C;
+    --ink-mute:#767B8C;
+    /* blue gradient stack */
+    --blue-deep:#081B4D;
+    --blue-mid:#173E9E;
+    --blue-bright:#2E6BF0;
+    --blue-electric:#4F8CFF;
+    --blue-line:rgba(23,62,158,0.22);
+    --grad-main:linear-gradient(135deg, var(--blue-deep) 0%, var(--blue-mid) 52%, var(--blue-bright) 100%);
+    --grad-soft:linear-gradient(135deg, rgba(8,27,77,0.06) 0%, rgba(46,107,240,0.10) 100%);
+    /* dark charcoal block for alternating sections */
+    --char-deep:#0C0D10;
+    --char-mid:#23252B;
+    --char-line:rgba(244,241,232,0.10);
+    --char-line-strong:rgba(244,241,232,0.18);
+    --grad-dark:linear-gradient(160deg, var(--char-deep) 0%, var(--char-mid) 100%);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bone);
+    color:var(--ink);
+    font-family:'Archivo',sans-serif;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--blue-bright);color:var(--bone);}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--blue-bright);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:600;
+  }
+  .eyebrow::before{
+    content:"";
+    width:18px;height:1px;
+    background:var(--blue-bright);
+    display:inline-block;
+  }
+
+  /* ---------- texture utilities ---------- */
+  .grille{
+    background-image:repeating-linear-gradient(
+      55deg,
+      var(--paper-line) 0px, var(--paper-line) 1px,
+      transparent 1px, transparent 9px
+    );
+  }
+
+  /* ---------- seal / signature mark (geometric, no glyph) ---------- */
+  .seal-mark{
+    width:40px;height:40px;
+    border:1.5px solid var(--blue-bright);
+    border-radius:50%;
+    flex-shrink:0;
+    position:relative;
+    background:var(--bone);
+  }
+  .seal-mark::before{
+    content:"";
+    position:absolute;
+    top:50%;left:50%;
+    width:14px;height:14px;
+    margin:-7px 0 0 -7px;
+    background:var(--grad-main);
+    transform:rotate(45deg);
+  }
+  .seal-mark::after{
+    content:"";
+    position:absolute;
+    inset:-6px;
+    border:1px dashed var(--blue-line);
+    border-radius:50%;
+    opacity:.7;
+  }
+  .seal-mark.sm{width:32px;height:32px;}
+  .seal-mark.sm::before{width:11px;height:11px;margin:-5.5px 0 0 -5.5px;}
+
+  /* ---------- nav ---------- */
+  header{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:50;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px clamp(20px,5vw,64px);
+    background:linear-gradient(to bottom, rgba(244,241,232,0.94), rgba(244,241,232,0));
+    transition:background .3s ease;
+  }
+  header.scrolled{
+    background:rgba(244,241,232,0.94);
+    border-bottom:1px solid var(--paper-line-strong);
+    backdrop-filter:blur(6px);
+  }
+  .brandblock{display:flex;align-items:center;gap:12px;}
+  .brand-name{
+    font-family:'Shippori Mincho',serif;
+    font-size:18px;
+    letter-spacing:0.01em;
+    text-transform:uppercase;
+    color:var(--ink);
+    font-weight:700;
+  }
+  .brand-accent{
+    background:var(--grad-main);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  nav ul{
+    display:flex;
+    gap:32px;
+    list-style:none;
+  }
+  nav a{
+    font-size:13px;
+    letter-spacing:0.04em;
+    color:var(--ink-dim);
+    position:relative;
+    padding-bottom:4px;
+    font-weight:500;
+  }
+  nav a:hover{color:var(--ink);}
+  nav a::after{
+    content:"";
+    position:absolute;left:0;bottom:0;
+    width:0;height:1px;background:var(--blue-bright);
+    transition:width .25s ease;
+  }
+  nav a:hover::after{width:100%;}
+  .nav-cta{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    background:var(--grad-main);
+    color:var(--bone);
+    padding:10px 18px;
+    font-weight:600;
+  }
+  .nav-toggle{display:none;background:none;border:none;color:var(--ink);font-size:22px;cursor:pointer;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    position:relative;
+    padding:150px clamp(20px,5vw,64px) 0;
+    background:var(--bone);
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:repeating-linear-gradient(0deg, var(--paper-line) 0px, var(--paper-line) 1px, transparent 1px, transparent 64px),
+                      repeating-linear-gradient(90deg, var(--paper-line) 0px, var(--paper-line) 1px, transparent 1px, transparent 64px);
+    opacity:.7;
+    pointer-events:none;
+  }
+  .hero-glow{
+    position:absolute;
+    top:-20%;right:-10%;
+    width:60%;height:90%;
+    background:radial-gradient(ellipse at center, rgba(46,107,240,0.16), transparent 65%);
+    pointer-events:none;
+    z-index:1;
+  }
+  .hero-inner{
+    position:relative;z-index:2;
+    display:grid;
+    grid-template-columns:230px 1fr;
+    gap:48px;
+    align-items:start;
+  }
+  .hero-stats{
+    display:flex;
+    flex-direction:column;
+    gap:26px;
+    padding-top:8px;
+  }
+  .stat{
+    border-left:2px solid var(--blue-bright);
+    padding-left:16px;
+  }
+  .stat .num{
+    font-family:'Shippori Mincho',serif;
+    font-weight:800;
+    font-size:38px;
+    line-height:1;
+    background:var(--grad-main);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .stat .lbl{
+    margin-top:6px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-mute);
+    line-height:1.5;
+  }
+  .hero-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+  }
+  .hero-loc{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--ink-mute);
+    letter-spacing:.08em;
+    text-align:right;
+    line-height:1.6;
+  }
+  .hero-title{
+    font-family:'Shippori Mincho',serif;
+    font-weight:800;
+    line-height:.92;
+    font-size:clamp(54px,9.5vw,124px);
+    letter-spacing:-0.01em;
+    margin-top:22px;
+    color:var(--ink);
+  }
+  .hero-title .accent{
+    background:var(--grad-main);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .hero-sub{
+    margin-top:22px;
+    max-width:480px;
+    font-size:16.5px;
+    line-height:1.65;
+    color:var(--ink-dim);
+  }
+  .hero-actions{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:18px;
+    margin-top:38px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:15px 26px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    border:1.5px solid var(--blue-mid);
+    color:var(--ink);
+    transition:all .25s ease;
+    white-space:nowrap;
+    font-weight:600;
+  }
+  .btn-fill{background:var(--grad-main);border-color:transparent;color:var(--bone);}
+  .btn-fill:hover{filter:brightness(1.1);transform:translateY(-2px);}
+  .btn-ghost:hover{background:rgba(46,107,240,0.08);border-color:var(--blue-bright);}
+  .hours-badge{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--ink-mute);
+    letter-spacing:.05em;
+  }
+  .dot-live{
+    width:7px;height:7px;border-radius:50%;
+    background:var(--blue-bright);
+    box-shadow:0 0 0 3px rgba(46,107,240,0.18);
+  }
+  .hero-bottom-art{
+    position:relative;z-index:2;
+    margin-top:56px;
+    display:flex;
+    justify-content:flex-end;
+  }
+  .hero-mark{
+    width:120px;height:120px;
+    border:1.5px solid var(--blue-line);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+  }
+  .hero-mark::before{
+    content:"";
+    position:absolute;inset:14px;
+    border:1px dashed var(--blue-line);
+    border-radius:50%;
+  }
+  .hero-mark span{
+    font-family:'Shippori Mincho',serif;
+    font-size:13px;
+    letter-spacing:.1em;
+    color:var(--blue-mid);
+    text-align:center;
+    line-height:1.4;
+  }
+
+  /* ---------- marquee band ---------- */
+  .marquee-band{
+    background:var(--grad-main);
+    padding:20px 0;
+    overflow:hidden;
+    position:relative;
+    transform:skewY(-1.6deg);
+    margin:-22px 0;
+    z-index:5;
+  }
+  .marquee-track{
+    display:flex;
+    width:max-content;
+    animation:marquee 32s linear infinite;
+  }
+  .marquee-track span{
+    font-family:'Shippori Mincho',serif;
+    font-weight:800;
+    font-size:26px;
+    color:var(--bone);
+    white-space:nowrap;
+    padding:0 28px;
+    display:flex;
+    align-items:center;
+    gap:28px;
+    letter-spacing:.02em;
+  }
+  .marquee-track span::after{
+    content:"◆";
+    font-size:12px;
+    color:rgba(244,241,232,0.55);
+  }
+  @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ---------- section shell ---------- */
+  section{
+    padding:130px clamp(20px,5vw,64px) 110px;
+    position:relative;
+  }
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:40px;
+    margin-bottom:56px;
+    flex-wrap:wrap;
+  }
+  .section-title{
+    font-family:'Shippori Mincho',serif;
+    font-weight:700;
+    font-size:clamp(32px,4.6vw,52px);
+    line-height:1.1;
+    margin-top:12px;
+    color:var(--ink);
+  }
+  .section-note{
+    max-width:340px;
+    color:var(--ink-dim);
+    font-size:14.5px;
+    line-height:1.6;
+  }
+
+  /* ---------- dark charcoal block sections ---------- */
+  .dark-block{
+    background:var(--grad-dark);
+    color:var(--bone);
+    position:relative;
+  }
+  .dark-block::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:repeating-linear-gradient(0deg, var(--char-line) 0px, var(--char-line) 1px, transparent 1px, transparent 64px),
+                      repeating-linear-gradient(90deg, var(--char-line) 0px, var(--char-line) 1px, transparent 1px, transparent 64px);
+    pointer-events:none;
+  }
+  .dark-block > *{position:relative;z-index:1;}
+  .dark-block .section-title{color:var(--bone);}
+  .dark-block .section-note{color:rgba(244,241,232,0.62);}
+  .dark-block .eyebrow{color:var(--blue-electric);}
+  .dark-block .eyebrow::before{background:var(--blue-electric);}
+
+  .reveal{
+    opacity:1;
+    transform:none;
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .js-reveal-ready .reveal{
+    opacity:0;
+    transform:translateY(28px);
+  }
+  .js-reveal-ready .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ---------- WHAT WE DO (services grid) ---------- */
+  .do{background:var(--grad-dark);color:var(--bone);}
+  .do-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    grid-template-rows:auto auto;
+    gap:22px;
+  }
+  .do-card{
+    border:1.5px solid var(--char-line-strong);
+    background:rgba(244,241,232,0.04);
+    padding:30px 26px;
+    position:relative;
+    transition:border-color .25s ease, transform .25s ease;
+  }
+  .do-card:hover{border-color:var(--blue-electric);transform:translateY(-4px);}
+  .do-card .arrow{
+    width:34px;height:34px;
+    border-radius:50%;
+    background:var(--grad-main);
+    color:var(--bone);
+    display:flex;align-items:center;justify-content:center;
+    font-size:15px;
+    margin-bottom:18px;
+  }
+  .do-card h3{
+    font-family:'Shippori Mincho',serif;
+    font-size:21px;
+    font-weight:700;
+    line-height:1.3;
+    margin-bottom:10px;
+    color:var(--bone);
+  }
+  .do-card p{
+    font-size:13.5px;
+    color:rgba(244,241,232,0.6);
+    line-height:1.6;
+  }
+  .do-card.feature{
+    grid-row:1/3;
+    background:var(--grad-main);
+    color:var(--bone);
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    min-height:340px;
+    border:none;
+    overflow:hidden;
+  }
+  .do-card.feature::before{
+    content:"";
+    position:absolute;inset:0;
+    background-image:repeating-linear-gradient(55deg, rgba(244,241,232,0.07) 0px, rgba(244,241,232,0.07) 1px, transparent 1px, transparent 10px);
+  }
+  .do-card.feature .tag{
+    position:relative;z-index:2;
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:rgba(244,241,232,0.7);
+    margin-bottom:10px;
+  }
+  .do-card.feature h3{
+    position:relative;z-index:2;
+    color:var(--bone);
+    font-size:26px;
+  }
+  .do-card.feature .arrow{
+    position:relative;z-index:2;
+    background:var(--bone);
+    color:var(--blue-mid);
+  }
+
+  /* ---------- about / who we are ---------- */
+  .about{
+    background:var(--bone-2);
+    border-top:1px solid var(--paper-line-strong);
+    border-bottom:1px solid var(--paper-line-strong);
+  }
+  .about-grid{
+    display:grid;
+    grid-template-columns:.85fr 1.15fr;
+    gap:64px;
+    align-items:center;
+  }
+  .about-art{
+    border:1.5px solid var(--paper-line-strong);
+    background:var(--grad-main);
+    min-height:380px;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+  }
+  .about-art::before{
+    content:"";
+    position:absolute;inset:0;
+    background-image:repeating-linear-gradient(0deg, rgba(244,241,232,0.08) 0 1px, transparent 1px 26px),
+                      repeating-linear-gradient(90deg, rgba(244,241,232,0.08) 0 1px, transparent 1px 26px);
+  }
+  .about-art-glyph{
+    position:relative;z-index:2;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .glyph-shape{
+    width:100px;height:100px;
+    border:2.5px solid rgba(244,241,232,0.85);
+    position:relative;
+    transform:rotate(45deg);
+  }
+  .glyph-shape::before{
+    content:"";
+    position:absolute;
+    inset:18px;
+    border:1.5px dashed rgba(244,241,232,0.5);
+  }
+  .glyph-shape::after{
+    content:"";
+    position:absolute;
+    top:50%;left:-22px;right:-22px;
+    height:1.5px;
+    background:rgba(244,241,232,0.5);
+    transform:translateY(-50%);
+  }
+  .about-art .glyph-sub{
+    position:relative;z-index:2;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:.2em;
+    color:rgba(244,241,232,0.6);
+    text-transform:uppercase;
+    margin-top:24px;
+  }
+  .about-art-wrap{display:flex;flex-direction:column;align-items:center;gap:0;}
+  .about-text p{
+    font-size:15.5px;
+    line-height:1.8;
+    color:var(--ink-dim);
+    max-width:520px;
+  }
+  .about-text p+p{margin-top:14px;}
+  .about-badges{
+    display:flex;
+    gap:28px;
+    margin-top:28px;
+    flex-wrap:wrap;
+  }
+  .about-badge{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--ink);
+    font-weight:600;
+  }
+  .about-badge .ic{
+    width:26px;height:26px;
+    border-radius:50%;
+    background:var(--grad-main);
+    flex-shrink:0;
+  }
+  .progress-block{margin-top:34px;display:flex;flex-direction:column;gap:18px;}
+  .progress-row .pr-label{
+    display:flex;justify-content:space-between;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    margin-bottom:7px;
+    color:var(--ink);
+  }
+  .progress-row .pr-track{
+    height:6px;
+    background:var(--bone-3);
+    position:relative;
+    overflow:hidden;
+  }
+  .progress-row .pr-fill{
+    position:absolute;left:0;top:0;bottom:0;
+    background:var(--grad-main);
+  }
+
+  /* ---------- menu (order chits) ---------- */
+  .menu{background:var(--bone);}
+  .menu-tabs{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:42px;
+  }
+  .menu-tab{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-dim);
+    background:var(--bone-2);
+    border:1.5px solid var(--paper-line-strong);
+    padding:11px 18px;
+    cursor:pointer;
+    transition:all .2s ease;
+    font-weight:600;
+  }
+  .menu-tab:hover{color:var(--ink);border-color:var(--blue-bright);}
+  .menu-tab.active{
+    background:var(--grad-main);
+    border-color:transparent;
+    color:var(--bone);
+  }
+  .menu-panel{display:none;}
+  .menu-panel.active{display:block;}
+  .new-tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:9px;
+    background:var(--grad-main);
+    color:var(--bone);
+    padding:2px 5px;
+    margin-left:8px;
+    letter-spacing:.05em;
+    vertical-align:middle;
+    font-weight:700;
+  }
+  .menu-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:26px;
+  }
+  .chit{
+    background:var(--bone-2);
+    border:1.5px solid var(--paper-line-strong);
+    padding:30px 28px 26px;
+    position:relative;
+  }
+  .chit::before{
+    content:"";
+    position:absolute;
+    top:-1.5px;left:0;right:0;
+    height:3px;
+    background:var(--grad-main);
+  }
+  .chit-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    margin-bottom:18px;
+    border-bottom:1px solid var(--paper-line-strong);
+    padding-bottom:14px;
+  }
+  .chit-num{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--blue-mid);letter-spacing:.1em;font-weight:600;}
+  .chit-title{font-family:'Shippori Mincho',serif;font-size:24px;font-weight:700;color:var(--ink);}
+  .chit ul{list-style:none;display:flex;flex-direction:column;gap:13px;}
+  .chit li{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:14px;
+    font-size:14.5px;
+    color:var(--ink-dim);
+    border-bottom:1px dotted var(--paper-line-strong);
+    padding-bottom:9px;
+  }
+  .chit li .price{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink);white-space:nowrap;font-weight:600;}
+  .chit-sub{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;
+    color:var(--blue-mid);
+    letter-spacing:.1em;
+    margin:26px 0 12px;
+    text-transform:uppercase;
+    font-weight:600;
+  }
+  .chit-sub:first-child{margin-top:0;}
+  .chit-desc{
+    display:block;
+    font-size:12px;
+    color:var(--ink-mute);
+    margin-top:3px;
+    font-family:'Archivo',sans-serif;
+    font-style:italic;
+  }
+  .chit li.has-desc{flex-direction:column;align-items:flex-start;gap:2px;}
+  .chit li.has-desc .price{align-self:flex-end;margin-top:-20px;}
+  .price-pair{display:flex;gap:8px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink);white-space:nowrap;font-weight:600;}
+  .price-pair .pp-ice{color:var(--ink);}
+  .price-pair .pp-hot{color:var(--ink-mute);}
+  .menu-foot{
+    margin-top:40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:20px;
+  }
+  .menu-foot-note{
+    font-size:13px;
+    color:var(--ink-mute);
+    font-family:'JetBrains Mono',monospace;
+    max-width:380px;
+    line-height:1.6;
+  }
+
+  /* ---------- trust strip ---------- */
+  .trust-strip{
+    background:var(--grad-main);
+    padding:48px clamp(20px,5vw,64px);
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:30px;
+  }
+  .trust-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+  }
+  .trust-item .icon-ring{
+    width:54px;height:54px;
+    border-radius:50%;
+    border:1.5px solid rgba(244,241,232,0.4);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Shippori Mincho',serif;
+    font-size:20px;
+    color:var(--bone);
+  }
+  .trust-item span.lbl{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:rgba(244,241,232,0.75);
+    text-align:center;
+  }
+
+  /* ---------- location ---------- */
+  .location{
+    background:var(--grad-dark);
+    color:var(--bone);
+  }
+  .loc-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:stretch;
+  }
+  .map-panel{
+    border:1.5px solid var(--char-line-strong);
+    min-height:340px;
+    position:relative;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(79,140,255,0.18), transparent 45%),
+      repeating-linear-gradient(0deg, var(--char-line) 0 1px, transparent 1px 22px),
+      repeating-linear-gradient(90deg, var(--char-line) 0 1px, transparent 1px 22px),
+      transparent;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+  }
+  .map-pin{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+  }
+  .map-pin .dot{
+    width:14px;height:14px;border-radius:50%;background:var(--grad-main);
+    box-shadow:0 0 0 8px rgba(79,140,255,0.18), 0 0 0 16px rgba(79,140,255,0.09);
+  }
+  .map-pin span{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;letter-spacing:.1em;color:rgba(244,241,232,0.65);
+    text-align:center;max-width:220px;
+  }
+  .hours-table{
+    border:1.5px solid var(--char-line-strong);
+  }
+  .hours-table .row{
+    display:flex;
+    justify-content:space-between;
+    padding:16px 22px;
+    border-bottom:1px solid var(--char-line-strong);
+    font-family:'JetBrains Mono',monospace;
+    font-size:13.5px;
+  }
+  .hours-table .row:last-child{border-bottom:none;}
+  .hours-table .row .d{color:rgba(244,241,232,0.55);letter-spacing:.05em;}
+  .hours-table .row .t{color:var(--bone);font-weight:600;}
+  .addr-line{
+    margin-top:24px;
+    font-size:15px;
+    line-height:1.7;
+    color:rgba(244,241,232,0.65);
+  }
+  .addr-line strong{color:var(--bone);}
+
+  /* ---------- cta / reservation ---------- */
+  .cta{background:var(--bone);}
+  .cta-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:26px;
+  }
+  .panel{
+    border:1.5px solid var(--paper-line-strong);
+    padding:40px;
+    background:var(--bone-2);
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    min-height:230px;
+    transition:border-color .25s ease, transform .25s ease;
+  }
+  .panel:hover{border-color:var(--blue-bright);transform:translateY(-3px);}
+  .panel-top .eyebrow{margin-bottom:14px;}
+  .panel h3{
+    font-family:'Shippori Mincho',serif;
+    font-size:28px;
+    margin-bottom:10px;
+    color:var(--ink);
+  }
+  .panel p{color:var(--ink-dim);font-size:14px;line-height:1.6;max-width:360px;}
+  .panel .btn{align-self:flex-start;margin-top:24px;}
+
+  /* ---------- footer ---------- */
+  footer{
+    padding:50px clamp(20px,5vw,64px) 36px;
+    border-top:1px solid var(--paper-line-strong);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:20px;
+    background:var(--bone);
+  }
+  .foot-left{display:flex;align-items:center;gap:14px;}
+  .foot-left p{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink-mute);}
+  .foot-socials{display:flex;gap:22px;}
+  .foot-socials a{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;letter-spacing:.06em;
+    color:var(--ink-dim);
+    border-bottom:1px solid transparent;
+  }
+  .foot-socials a:hover{color:var(--blue-bright);border-color:var(--blue-bright);}
+
+  @media (max-width:860px){
+    nav ul{display:none;}
+    .nav-toggle{display:block;}
+    .about-grid, .loc-grid, .cta-grid{grid-template-columns:1fr;}
+    .menu-grid{grid-template-columns:1fr;}
+    .hero-top{flex-direction:column;align-items:flex-start;gap:14px;}
+    .hero-loc{text-align:left;}
+    .hero-inner{grid-template-columns:1fr;}
+    .hero-stats{flex-direction:row;flex-wrap:wrap;gap:20px;}
+    .do-grid{grid-template-columns:1fr;}
+    .do-card.feature{grid-row:auto;min-height:240px;}
+    .marquee-track span{font-size:18px;}
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="brandblock">
+    <span class="brand-name">Stay With Me <span class="brand-accent">Coffe</span></span>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#tentang">Tentang</a></li>
+      <li><a href="#lokasi">Lokasi</a></li>
+      <li><a href="#reservasi">Reservasi</a></li>
+    </ul>
+  </nav>
+  <a class="nav-cta" href="https://wa.link/zgspf9" target="_blank" rel="noopener">Reservasi</a>
+</header>
+
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-stats">
+      <div class="stat"><div class="num">10+</div><div class="lbl">Tahun<br>Pengalaman</div></div>
+      <div class="stat"><div class="num">120+</div><div class="lbl">Menu<br>Tersedia</div></div>
+      <div class="stat"><div class="num">24/7</div><div class="lbl">Buka<br>10.00 — 24.00</div></div>
+    </div>
+    <div>
+      <div class="hero-top">
+        <div class="seal-mark"></div>
+        <div class="hero-loc">
+          JL. KH. AHMAD DAHLAN NO.12<br>
+          GONDANGLEGI — MALANG
+        </div>
+      </div>
+
+      <h1 class="hero-title">STAY WITH<br>ME <span class="accent">COFFE</span></h1>
+      <p class="hero-sub">Japanese industrial concept di tengah Gondanglegi — beton, besi, dan cahaya biru dingin, ditemani kopi, ramen, dan snack. No alcohol, semua kalangan welcome.</p>
+
+      <div class="hero-actions">
+        <a class="btn btn-fill" href="https://wa.link/zgspf9" target="_blank" rel="noopener">Reservasi via WhatsApp →</a>
+        <a class="btn btn-ghost" href="#menu">Lihat Menu</a>
+        <div class="hours-badge"><span class="dot-live"></span> Buka hari ini · 10.00 — 24.00</div>
+      </div>
+
+      <div class="hero-bottom-art">
+        <div class="hero-mark"><span>JAPANESE<br>INDUSTRIAL<br>CONCEPT</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-band">
+  <div class="marquee-track">
+    <span><span>COFFE</span><span>RAMEN</span><span>MATCHA</span><span>SNACK</span><span>DESSERT</span><span>COFFE</span><span>RAMEN</span><span>MATCHA</span><span>SNACK</span><span>DESSERT</span></span>
+    <span><span>COFFE</span><span>RAMEN</span><span>MATCHA</span><span>SNACK</span><span>DESSERT</span><span>COFFE</span><span>RAMEN</span><span>MATCHA</span><span>SNACK</span><span>DESSERT</span></span>
+  </div>
+</div>
+
+<section class="do dark-block" id="tentang">
+  <div class="section-head reveal">
+    <div>
+      <span class="eyebrow">What We Do</span>
+      <h2 class="section-title">Sudut tenang,<br>rasa industrial.</h2>
+    </div>
+    <p class="section-note">Stay With Me lahir dari ide sederhana: tempat nongkrong yang terasa seperti bengkel tua diberi kehidupan baru — beton ekspos, besi, dan cahaya biru yang tenang.</p>
+  </div>
+
+  <div class="do-grid">
+    <div class="do-card reveal">
+      <div class="arrow">↗</div>
+      <h3>Ngopi &amp; Kerja Santai</h3>
+      <p>Sudut WFC dengan colokan dan koneksi stabil, cocok buat kerja maupun ngobrol santai sepanjang hari.</p>
+    </div>
+    <div class="do-card feature reveal">
+      <span class="tag">Signature Space</span>
+      <h3>Indoor, Outdoor &amp; Rooftop dengan Kanopi</h3>
+    </div>
+    <div class="do-card reveal">
+      <div class="arrow">↗</div>
+      <h3>Ramen &amp; Rice Bowl</h3>
+      <p>Ramen katsu, ramen beef, hingga rice bowl ayam &amp; udang dengan level kepedasan sendiri.</p>
+    </div>
+    <div class="do-card reveal">
+      <div class="arrow">↗</div>
+      <h3>Matcha &amp; Signature Drink</h3>
+      <p>Dari matcha cloud sampai signature frappe — racikan creamy yang jadi favorit pengunjung.</p>
+    </div>
+    <div class="do-card reveal">
+      <div class="arrow">↗</div>
+      <h3>Snack &amp; Dessert Box</h3>
+      <p>Croissant, cromboloni, ogura cake, sampai snack ringan buat nemenin obrolan.</p>
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="about-grid">
+    <div class="about-art-wrap reveal">
+      <div class="about-art">
+        <div class="about-art-glyph">
+          <div class="glyph-shape"></div>
+          <div class="glyph-sub">Stay With Me</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-text reveal">
+      <span class="eyebrow">Who We Are</span>
+      <h2 class="section-title">Creativity Meets<br>Industrial Comfort.</h2>
+      <p>Setiap sudut Stay With Me didesain biar betah — dinding ekspos, garis besi, dan cahaya biru dingin yang jadi identitas kami sejak awal buka di Gondanglegi.</p>
+      <p>Kami percaya kopi yang enak harus ditemani tempat yang nyaman ditinggali lama: buat kerja, ngumpul keluarga, atau sekadar menikmati ramen hangat di tengah hari.</p>
+
+      <div class="about-badges">
+        <div class="about-badge"><span class="ic"></span> Over 10 Years Concept</div>
+        <div class="about-badge"><span class="ic"></span> No Alcohol Policy</div>
+      </div>
+
+      <div class="progress-block">
+        <div class="progress-row">
+          <div class="pr-label"><span>Kepuasan Pengunjung</span><span>96%</span></div>
+          <div class="pr-track"><div class="pr-fill" style="width:96%;"></div></div>
+        </div>
+        <div class="progress-row">
+          <div class="pr-label"><span>Menu Favorit Terjual</span><span>89%</span></div>
+          <div class="pr-track"><div class="pr-fill" style="width:89%;"></div></div>
+        </div>
+        <div class="progress-row">
+          <div class="pr-label"><span>Repeat Order</span><span>92%</span></div>
+          <div class="pr-track"><div class="pr-fill" style="width:92%;"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="menu" id="menu">
+  <div class="section-head reveal">
+    <div>
+      <span class="eyebrow">Order Ticket</span>
+      <h2 class="section-title">Menu Lengkap</h2>
+    </div>
+    <p class="section-note">Drink, ramen, snack, matcha series, dan dessert — harga asli sesuai pricelist terbaru kami.</p>
+  </div>
+
+  <div class="menu-tabs reveal" role="tablist">
+    <button class="menu-tab active" data-tab="drink">Drink</button>
+    <button class="menu-tab" data-tab="signature">Signature</button>
+    <button class="menu-tab" data-tab="matcha">Matcha</button>
+    <button class="menu-tab" data-tab="food">Ramen &amp; Rice</button>
+    <button class="menu-tab" data-tab="snack">Snack</button>
+    <button class="menu-tab" data-tab="dessert">Dessert</button>
+  </div>
+
+  <!-- DRINK -->
+  <div class="menu-panel active" id="panel-drink">
+    <div class="menu-grid">
+      <div class="chit reveal">
+        <div class="chit-head"><span class="chit-title">Milkbase</span><span class="chit-num">Ice / Hot</span></div>
+        <ul>
+          <li>Ice Susu Segar <span class="price">10K</span></li>
+          <li>Susu Regal <span class="price">15K</span></li>
+          <li>Sakura Ice <span class="price-pair"><span class="pp-ice">15K</span><span class="pp-hot">15K</span></span></li>
+          <li>Chocoretto (Coklat) <span class="price-pair"><span class="pp-ice">15K</span><span class="pp-hot">15K</span></span></li>
+          <li>Ryokucha (Matcha) <span class="price-pair"><span class="pp-ice">15K</span><span class="pp-hot">15K</span></span></li>
+          <li>Bubble Gum <span class="price">15K</span></li>
+          <li>Taro <span class="price-pair"><span class="pp-ice">15K</span><span class="pp-hot">15K</span></span></li>
+          <li>Oreo <span class="price">15K</span></li>
+          <li>Dino Milo <span class="price-pair"><span class="pp-ice">15K</span><span class="pp-hot">15K</span></span></li>
+          <li>Chocoberrys <span class="price">18K</span></li>
+          <li>Black Forest <span class="price">18K</span></li>
+        </ul>
+      </div>
+
+      <div class="chit reveal">
+        <div class="chit-head"><span class="chit-title">Coffee Hot</span><span class="chit-num">No.01</span></div>
+        <ul>
+          <li>Tubruk Stay <span class="price">8K</span></li>
+          <li>Tubruk Stay Robusta <span class="price">8K</span></li>
+          <li>Tubruk Stay Arabica <span class="price">12K</span></li>
+          <li>Tubruk Susu Stay <span class="price">10K</span></li>
+          <li>Tubruk Susu Arabica <span class="price">15K</span></li>
+          <li>Tubruk Susu Robusta <span class="price">10K</span></li>
+          <li>Americano Robusta <span class="price">12K</span></li>
+          <li>Vietnam Drip <span class="price">12K</span></li>
+          <li>Americano Arabica <span class="price">18K</span></li>
+          <li>Coffe Latte <span class="price">18K</span></li>
+          <li>Cappuccino <span class="price">18K</span></li>
+          <li>Vanilla Latte <span class="price">20K</span></li>
+          <li>Caramel Latte <span class="price">20K</span></li>
+          <li>Hazelnut Latte <span class="price">20K</span></li>
+          <li>Pistachio Latte <span class="new-tag">NEW</span> <span class="price">20K</span></li>
+        </ul>
+      </div>
+
+      <div class="chit reveal">
+        <div class="chit-head"><span class="chit-title">Coffee Ice</span><span class="chit-num">No.02</span></div>
+        <ul>
+          <li>Ice Kopi Susu <span class="price">13K</span></li>
+          <li>Ice Kopi Susu Creamy <span class="price">13K</span></li>
+          <li>Americano Ice <span class="price">13K</span></li>
+          <li>Vietnam Drip Ice <span class="new-tag">NEW</span> <span class="price">14K</span></li>
+          <li>Whiskey Coffee <span class="price">15K</span></li>
+          <li>Hazelnut Coffee <span class="price">15K</span></li>
+          <li>Ice Kopi Susu Gula Aren <span class="price">15K</span></li>
+          <li>Ice Kopi Susu Caramel <span class="price">15K</span></li>
+          <li>Ice Kopi Susu Pandan <span class="price">15K</span></li>
+          <li>Ice Kopi Strawberry <span class="price">15K</span></li>
+          <li>Ice Kopi Cappuccino <span class="price">15K</span></li>
+          <li>Vanilla Latte <span class="price">15K</span></li>
+        </ul>
+      </div>
+
+      <div class="chit reveal">
+        <div class="chit-head"><span class="chit-title">Yakult Series</span><span class="chit-num">No.03</span></div>
+        <ul>
+          <li>Blueberry Yakult <span class="price">15K</span></li>
+          <li>Peach Yakult <span class="price">15K</span></li>
+          <li>Strawberry Yakult <span class="price">15K</span></li>
+          <li>Lychee Yakult <span class="price">15K</span></li>
+          <li>Vanilla Yakult <span class="price">15K</span></li>
+          <li>Pineapple Yakult <span class="price">15K</span></li>
+          <li>Mint Yakult <span class="price">15K</span></li>
+          <li>Mango Yakult <span class="new-tag">NEW</span> <span class="price">15K</span></li>
+        </ul>
+      </div>
+
+      <div class="chit reveal">
+        <div class="chit-head"><span class="chit-title">Mocktail</span><span class="chit-num">No.04</span></div>
+        <ul>
+          <li>Lemonade <span class="price">10K</span></li>
+          <li>Lemon Squash <span class="price">15K</span></li>
+          <li>Blood Sparkling <span class="price">15K</span></li>
+          <li>Raijin Bloods (Kopi Soda) <span class="price">15K</span></li>
+          <li>Peach Sparkling <span class="price">15K</span></li>
+          <li>Pineapple Sugar <span class="price">15K</span></li>
+        </ul>
+      </div>
+
+      <div class="chit reveal">
+        <div class="chit-head"><span class="chit-title">Tea Series</span><span class="chit-num">Hot / Ice</span></div>
+        <ul>
+          <li>Ice Dragon Tea <span class="price-pair"><span class="pp-hot">5K</span><span class="pp-ice">7K</span></span></li>
+          <li>Lemon Tea <span class="price-pair"><span class="pp-hot">8K</span><span class="pp-ice">10K</span></span></li>
+          <li>Lychee Tea <span class="price-pair"><span class="pp-hot">10K</span><span class="pp-ice">12K</span></span></li>
+          <li>Blueberry Tea <span class="price-pair"><span class="pp-hot">10K</span><span class="pp-ice">12K</span></span></li>
+          <li>Apple Tea <span class="price-pair"><span class="pp-hot">10K</span><span class="pp-ice">12K</span></span></li>
+          <li>Strawberry Tea <span class="price-pair"><span class="pp-hot">10K</span><span class="pp-ice">12K</span></span></li>
+          <li>Peach Tea <span class="price-pair"><span class="pp-hot">10K</span><span class="pp-ice">12K</span></span></li>
+          <li>Pineapple Tea <span class="price-pair"><span class="pp-hot">10K</span><span class="pp-ice">12K</span></span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIGNATURE -->
+  <div class="menu-panel" id="panel-signature">
+    <div class="menu-grid">
+      <div class="chit reveal" style="grid-column:1/-1;">
+        <div class="chit-head"><span class="chit-title">Signature</span><span class="chit-num">No.05</span></div>
+        <ul>
+          <li class="has-desc">Red Ruby<span class="chit-desc">Refreshing drink with soda and strawberry flavoring.</span> <span class="price">20K</span></li>
+          <li class="has-desc">Blue Ocean<span class="chit-desc">A refreshing drink with soda and bitter curacao flavor.</span> <span class="price">20K</span></li>
+          <li class="has-desc">Blueberry Frappe<span class="chit-desc">Milk base with jam and blueberry flavor, whipped cream on top.</span> <span class="price">22K</span></li>
+          <li class="has-desc">Strawberry Frappe<span class="chit-desc">Milk base with jam and strawberry flavor, whipped cream on top.</span> <span class="price">22K</span></li>
+          <li class="has-desc">Javanilla Chips Frappe<span class="chit-desc">Vanilla chocochips with whipped cream and oreo crumb.</span> <span class="price">22K</span></li>
+          <li class="has-desc">Mix Berries Frappe<span class="chit-desc">Mixed sweet berries jam with soft whipped cream.</span> <span class="price">25K</span></li>
+          <li class="has-desc">Caramel Pop Corn<span class="chit-desc">Sweet and salty popcorn taste mixed with whipped cream.</span> <span class="price">25K</span></li>
+          <li class="has-desc">Lotus Frappe<span class="chit-desc">Mixed biscuit and lotus jam with soft whipped cream.</span> <span class="price">25K</span></li>
+          <li class="has-desc">White Russian<span class="chit-desc">Combination of peanut butter with Russian coffee taste.</span> <span class="price">25K</span></li>
+          <li class="has-desc">Caramel Macchiato<span class="chit-desc">Espresso with steamed milk, vanilla syrup, caramel sauce on top.</span> <span class="price">25K</span></li>
+        </ul>
+      </div>
+      <div class="chit reveal">
+        <div class="chit-head"><span class="chit-title">Infused Americano</span><span class="chit-num">All New</span></div>
+        <ul>
+          <li>Pistachio <span class="new-tag">NEW</span> <span class="price">15K</span></li>
+          <li>Hazelnut <span class="new-tag">NEW</span> <span class="price">15K</span></li>
+          <li>Caramel <span class="new-tag">NEW</span> <span class="price">15K</span></li>
+          <li>Lychee <span class="new-tag">NEW</span> <span class="price">15K</span></li>
+          <li>Strawberry <span class="new-tag">NEW</span> <span class="price">15K</span></li>
+          <li>Pineapple <span class="new-tag">NEW</span> <span class="price">15K</span></li>
+        </ul>
+      </div>
+      <div class="chit reveal">
+        <div class="chit-head"><span class="chit-title">Coffee Special</span><span class="chit-num">All New</span></div>
+        <ul>
+          <li>Affogato <span class="price">15K</span></li>
+          <li>Pistachio Coffee <span class="new-tag">NEW</span> <span class="price">18K</span></li>
+          <li>Salted Caramel <span class="new-tag">NEW</span> <span class="price">18K</span></li>
+          <li>Popcorn Latte <span class="new-tag">NEW</span> <span class="price">18K</span></li>
+          <li>Ice Moccachino <span class="new-tag">NEW</span> <span class="price">18K</span></li>
+          <li>Biscoff Latte <span class="new-tag">NEW</span> <span class="price">18K</span></li>
+        </ul>
+      </div>
+      <div class="chit reveal" style="grid-column:1/-1;">
+        <div class="chit-head"><span class="chit-title">Add Topping</span><span class="chit-num">Extra</span></div>
+        <ul style="display:grid;grid-template-columns:repeat(3,1fr);gap:13px;">
+          <li>Oreo <span class="price">5K</span></li>
+          <li>Regal <span class="price">5K</span></li>
+          <li>Chocochips <span class="price">5K</span></li>
+          <li>Espresso <span class="price">7K</span></li>
+          <li>Wiped Cream <span class="price">7K</span></li>
+          <li>Lotus Biscoff <span class="price">7K</span></li>
+          <li>Ice Cream <span class="price">10K</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATCHA -->
+  <div class="menu-panel" id="panel-matcha">
+    <div class="menu-grid">
+      <div class="chit reveal" style="grid-column:1/-1;">
+        <div class="chit-head"><span class="chit-title">Matcha Series</span><span class="chit-num">Authentic Creamy Matcha</span></div>
+        <ul>
+          <li>Matcha Latte <span class="price">25K</span></li>
+          <li>Strawberry Matcha <span class="price">30K</span></li>
+          <li>Matcha Cloud <span class="price">30K</span></li>
+          <li>Matcha Fogato <span class="price">30K</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOD (RAMEN & RICE) -->
+  <div class="menu-panel" id="panel-food">
+    <div class="menu-grid">
+      <div class="chit reveal">
+        <div class="chit-head"><span class="chit-title">Noodle Selection</span><span class="chit-num">No.06</span></div>
+        <ul>
+          <li class="has-desc">Mie Tambur<span class="chit-desc">Fried noodles with chicken and fried somay.</span> <span class="price">12K</span></li>
+          <li class="has-desc">Ramen Katsu Stay<span class="chit-desc">Curry ramen with chicken katsu as main topping.</span> <span class="price">20K</span></li>
+          <li class="has-desc">Ramen Beef Stay<span class="chit-desc">Milk curry ramen with added slice of beef.</span> <span class="price">25K</span></li>
+        </ul>
+      </div>
+      <div class="chit reveal">
+        <div class="chit-head"><span class="chit-title">Rice Selection</span><span class="chit-num">No.07</span></div>
+        <ul>
+          <li class="has-desc">Ayam Geprek<span class="chit-desc">Crispy fried chicken with sweet spicy sauce.</span> <span class="price">18K</span></li>
+          <li class="has-desc">Chicken Dragon<span class="chit-desc">Crispy chicken with sweet spicy sauce like flowing lava.</span> <span class="price">18K</span></li>
+          <li class="has-desc">Katsu Sambal Matah<span class="chit-desc">Chicken katsu combined with fresh spicy seasoning.</span> <span class="price">18K</span></li>
+          <li class="has-desc">Ayam Asam Manis <span class="new-tag">NEW</span><span class="chit-desc">Soft chicken with sweet & sour spice sauce.</span> <span class="price">18K</span></li>
+          <li class="has-desc">Ayam Sambal Matah<span class="chit-desc">Fried chicken with fresh raw ingredients for a satisfying taste.</span> <span class="price">18K</span></li>
+          <li class="has-desc">Udang Asam Manis <span class="new-tag">NEW</span><span class="chit-desc">Combination of shrimp & egg, sweet sour spice sauce.</span> <span class="price">20K</span></li>
+          <li class="has-desc">Chicken Katsu<span class="chit-desc">Chicken katsu with blackpepper sauce, topped with sliced sausage.</span> <span class="price">18K</span></li>
+          <li class="has-desc">Ayam Laos Sambal Ijo <span class="new-tag">NEW</span><span class="chit-desc">Fried chicken with spices, savory rice & refreshing green sambal.</span> <span class="price">20K</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SNACK -->
+  <div class="menu-panel" id="panel-snack">
+    <div class="menu-grid">
+      <div class="chit reveal" style="grid-column:1/-1;">
+        <div class="chit-head"><span class="chit-title">Snacks</span><span class="chit-num">No.08</span></div>
+        <ul style="display:grid;grid-template-columns:repeat(3,1fr);gap:13px;">
+          <li>Bakpao Mini <span class="price">8K</span></li>
+          <li>Donat <span class="new-tag">NEW</span> <span class="price">20K</span></li>
+          <li>Coco Maryam <span class="price">10K</span></li>
+          <li>Roti Bakar <span class="price">10K</span></li>
+          <li>Risol Mayo <span class="price">10K</span></li>
+          <li>Cireng Crispy <span class="price">10K</span></li>
+          <li>Nachos <span class="price">17K</span></li>
+          <li>New Platter <span class="new-tag">NEW</span> <span class="price">18K</span></li>
+          <li>Dimsum <span class="price">10K</span></li>
+          <li>Kentang <span class="price">12K</span></li>
+          <li>Kebab Mini <span class="price">12K</span></li>
+          <li>Sushi Hot <span class="price">12K</span></li>
+          <li>Corn Ribs <span class="price">15K</span></li>
+          <li>Mix Platter <span class="price">17K</span></li>
+          <li>Croffle <span class="price">17K</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- DESSERT -->
+  <div class="menu-panel" id="panel-dessert">
+    <div class="menu-grid">
+      <div class="chit reveal">
+        <div class="chit-head"><span class="chit-title">Croissant</span><span class="chit-num">No.09</span></div>
+        <ul>
+          <li>Plain / Original <span class="price">15K</span></li>
+          <li>Coconut <span class="price">25K</span></li>
+          <li>Almond <span class="price">25K</span></li>
+          <li>Oreo <span class="price">25K</span></li>
+        </ul>
+      </div>
+      <div class="chit reveal">
+        <div class="chit-head"><span class="chit-title">Cheesecake</span><span class="chit-num">No.10</span></div>
+        <ul>
+          <li>Matcha Tom And Jerry <span class="price">27K</span></li>
+          <li>Choco Tom And Jerry <span class="price">27K</span></li>
+          <li>Matcha Cheesecake <span class="price">27K</span></li>
+          <li>Lotus Cheesecake <span class="price">27K</span></li>
+        </ul>
+      </div>
+      <div class="chit reveal">
+        <div class="chit-head"><span class="chit-title">Crocube</span><span class="chit-num">No.11</span></div>
+        <ul>
+          <li>Chocolate <span class="price">30K</span></li>
+          <li>Tiramisu <span class="price">30K</span></li>
+          <li>Matcha <span class="price">30K</span></li>
+        </ul>
+      </div>
+      <div class="chit reveal">
+        <div class="chit-head"><span class="chit-title">Cromboloni</span><span class="chit-num">No.12</span></div>
+        <ul>
+          <li>Choco Banana <span class="price">25K</span></li>
+          <li>Choco Brownie <span class="price">25K</span></li>
+          <li>Choco Almond <span class="price">25K</span></li>
+          <li>Matcha <span class="price">25K</span></li>
+          <li>Lotus <span class="price">25K</span></li>
+        </ul>
+      </div>
+      <div class="chit reveal">
+        <div class="chit-head"><span class="chit-title">Ogura Cake</span><span class="chit-num">No.13</span></div>
+        <ul>
+          <li>Chocolate <span class="price">30K</span></li>
+          <li>Lotus <span class="price">30K</span></li>
+          <li>Oreo <span class="price">30K</span></li>
+          <li>Matcha <span class="price">30K</span></li>
+          <li>Taro <span class="price">30K</span></li>
+        </ul>
+      </div>
+      <div class="chit reveal">
+        <div class="chit-head"><span class="chit-title">Ribbon Croissant</span><span class="chit-num">No.14</span></div>
+        <ul>
+          <li>Strawberry <span class="price">30K</span></li>
+          <li>Choco Vanilla <span class="price">30K</span></li>
+          <li>Mocca Hazel <span class="price">30K</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-foot reveal">
+    <p class="menu-foot-note">Harga dapat berubah sewaktu-waktu. Item bertanda <span class="new-tag">NEW</span> adalah menu terbaru kami.</p>
+    <a class="btn btn-ghost" href="https://drive.google.com/file/d/1ZITtsu2oS5QarlVqSe9ko12dcGNTTk94/view" target="_blank" rel="noopener">Lihat Pricelist Lengkap (PDF) →</a>
+  </div>
+</section>
+
+<div class="trust-strip">
+  <div class="trust-item"><div class="icon-ring">和</div><span class="lbl">Japanese<br>Industrial</span></div>
+  <div class="trust-item"><div class="icon-ring">無</div><span class="lbl">No<br>Alcohol</span></div>
+  <div class="trust-item"><div class="icon-ring">茶</div><span class="lbl">Matcha<br>Series</span></div>
+  <div class="trust-item"><div class="icon-ring">麺</div><span class="lbl">Ramen<br>&amp; Rice</span></div>
+  <div class="trust-item"><div class="icon-ring">久</div><span class="lbl">10+ Years<br>Concept</span></div>
+</div>
+
+<section class="location dark-block" id="lokasi">
+  <div class="section-head reveal">
+    <div>
+      <span class="eyebrow">Cara Sampai</span>
+      <h2 class="section-title">Lokasi & Jam Buka</h2>
+    </div>
+  </div>
+  <div class="loc-grid">
+    <div class="map-panel reveal">
+      <div class="map-pin">
+        <div class="dot"></div>
+        <span>JL. KH. AHMAD DAHLAN NO.12<br>GONDANGLEGI, MALANG</span>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="hours-table">
+        <div class="row"><span class="d">SENIN — MINGGU</span><span class="t">10.00 — 24.00</span></div>
+        <div class="row"><span class="d">PARKIR MOBIL</span><span class="t">Tersedia di depan</span></div>
+        <div class="row"><span class="d">PARKIR MOTOR</span><span class="t">Samping cafe</span></div>
+        <div class="row"><span class="d">KEBIJAKAN</span><span class="t">No Alcohol</span></div>
+      </div>
+      <p class="addr-line">Mudah dijangkau dari pusat Gondanglegi, area indoor &amp; outdoor termasuk rooftop dengan kanopi. <strong>Klik tombol di bawah</strong> buat dapetin rute langsung dari lokasi kamu.</p>
+      <a class="btn btn-fill" style="margin-top:24px;" href="https://maps.app.goo.gl/8c9nh9JGNZf8taQZ7" target="_blank" rel="noopener">Buka di Google Maps →</a>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="reservasi">
+  <div class="section-head reveal">
+    <div>
+      <span class="eyebrow">Hubungi Kami</span>
+      <h2 class="section-title">Reservasi & Kerjasama</h2>
+    </div>
+  </div>
+  <div class="cta-grid">
+    <div class="panel reveal">
+      <div class="panel-top">
+        <span class="eyebrow">Untuk Pengunjung</span>
+        <h3>Reservasi Tempat</h3>
+        <p>Mau pastiin dapet tempat duduk favorit kamu? Chat kami langsung via WhatsApp.</p>
+      </div>
+      <a class="btn btn-fill" href="https://wa.link/zgspf9" target="_blank" rel="noopener">Reservasi via WA →</a>
+    </div>
+    <div class="panel reveal">
+      <div class="panel-top">
+        <span class="eyebrow">Untuk Partner</span>
+        <h3>Event & Sponsorship</h3>
+        <p>Punya rencana kerjasama event, brand activation, atau sponsorship? Mari diskusi.</p>
+      </div>
+      <a class="btn btn-ghost" href="https://wa.link/kdi14r" target="_blank" rel="noopener">Hubungi via WA →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-left">
+    <div class="seal-mark sm"></div>
+    <p>© 2026 STAY WITH ME COFFE — GONDANGLEGI, MALANG</p>
+  </div>
+  <div class="foot-socials">
+    <a href="https://instagram.com/staywithme.coffe" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://tiktok.com/@staywithme.coffe" target="_blank" rel="noopener">TikTok</a>
+    <a href="https://wa.link/zgspf9" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+</footer>
+
+<script>
+  try {
+    const header = document.getElementById('siteHeader');
+    if (header) {
+      window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 40);
+      });
+    }
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const revealEls = document.querySelectorAll('.reveal');
+    if (!prefersReduced && revealEls.length && 'IntersectionObserver' in window) {
+      document.documentElement.classList.add('js-reveal-ready');
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      revealEls.forEach(el => obs.observe(el));
+    }
+
+    const tabs = document.querySelectorAll('.menu-tab');
+    const panels = document.querySelectorAll('.menu-panel');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        panels.forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        const target = document.getElementById('panel-' + tab.dataset.tab);
+        if (target) {
+          target.classList.add('active');
+          target.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+        }
+      });
+    });
+  } catch (e) {
+    console.error('Non-critical UI script error:', e);
+  }
+</script>
+
+</body>
+</html>
